@@ -1,5 +1,5 @@
 {% set name = "colcon-parallel-executor" %}
-{% set version = "0.2.4" %}
+{% set version = "0.3.0" %}
 
 package:
   name: "{{ name|lower }}"
@@ -7,19 +7,20 @@ package:
 
 source:
   url: https://github.com/colcon/{{ name }}/archive/{{ version }}.tar.gz
-  sha256: 08bdb728fd5830f343230e999eb6ef421b198de8cd44f7c262fe9d4dfa2aacde
+  sha256: 1fae16f4c87b1d8e677bf3b86e0348c86f4dd850244358f8fc436cbe8449f8b7
 
 build:
   number: 0
-  script: "{{ PYTHON }} -m pip install . -vv"
+  script: "{{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation"
   noarch: python
 
 requirements:
   host:
     - pip
-    - python >=3.5
+    - setuptools
+    - python >=3.6
   run:
-    - python >=3.5
+    - python >=3.6
     - colcon-core >=0.3.15
 
 test:
