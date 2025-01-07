@@ -2,28 +2,30 @@
 {% set version = "0.3.0" %}
 
 package:
-  name: "{{ name|lower }}"
-  version: "{{ version }}"
+  name: {{ name|lower }}
+  version: {{ version }}
 
 source:
   url: https://github.com/colcon/{{ name }}/archive/{{ version }}.tar.gz
   sha256: 1fae16f4c87b1d8e677bf3b86e0348c86f4dd850244358f8fc436cbe8449f8b7
 
 build:
-  number: 0
-  script: "{{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation"
+  number: 1
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   noarch: python
 
 requirements:
   host:
     - pip
     - setuptools
-    - python >=3.6
+    - python {{ python_min }}
   run:
-    - python >=3.6
+    - python >={{ python_min }}
     - colcon-core >=0.3.15
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - {{ name.replace("-", "_") }}
 
