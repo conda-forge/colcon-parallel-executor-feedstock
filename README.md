@@ -9,7 +9,6 @@ Package license: Apache-2.0
 
 Summary: An extension for colcon-core to process packages in parallel.
 
-
 Current build status
 ====================
 
